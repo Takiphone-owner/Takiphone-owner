@@ -1,0 +1,111 @@
+// مدیریت منوی موبایل
+document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    if (mobileMenuBtn && mobileNav) {
+        mobileMenuBtn.addEventListener('click', function() {
+            mobileNav.classList.toggle('active');
+        });
+    }
+    
+    // بستن منو با کلیک روی لینک‌ها
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileNav.classList.remove('active');
+        });
+    });
+    
+    // اضافه کردن کلاس visible به عناصر با اسکرول
+    initScrollAnimations();
+    
+    // اضافه کردن افکت ripple به دکمه‌ها
+    initRippleEffect();
+    
+    // رویداد فرم تماس
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // نمایش پیام موفقیت
+            alert('درخواست شما با موفقیت ثبت شد. کارشناسان ما در اسرع وقت با شما تماس خواهند گرفت.');
+            
+            // پاک کردن فرم
+            contactForm.reset();
+        });
+    }
+    
+    // گزارش زمان بارگذاری صفحه
+    reportPageLoadTime();
+});
+
+// فانکشن برای اضافه کردن کلاس visible به عناصر با اسکرول
+function initScrollAnimations() {
+    const animatedElements = document.querySelectorAll('.fade-in-up');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+    
+    animatedElements.forEach(el => {
+        observer.observe(el);
+    });
+}
+
+// فانکشن برای افکت ripple روی دکمه‌ها
+function initRippleEffect() {
+    const buttons = document.querySelectorAll('.btn-ripple');
+    
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            const x = e.clientX - e.target.getBoundingClientRect().left;
+            const y = e.clientY - e.target.getBoundingClientRect().top;
+            
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            
+            this.appendChild(ripple);
+            
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        });
+    });
+}
+
+// گزارش زمان بارگذاری صفحه
+function reportPageLoadTime() {
+    if (window.performance) {
+        const loadTime = window.performance.now();
+        console.log('صفحه با موفقیت بارگذاری شد');
+        console.log(`زمان بارگذاری صفحه: ${Math.round(loadTime)}ms`);
+    }
+}
+
+// اسکرول نرم به لینک‌های هشتگ
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 80, // منهای ارتفاع هدر
+                behavior: 'smooth'
+            });
+        }
+    });
+});
