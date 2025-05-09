@@ -1,3 +1,35 @@
 User-agent: *
 Allow: /
+Disallow: /private/
+Disallow: /admin/
+Disallow: /api/
+Disallow: /cgi-bin/
+Disallow: /temp/
+Disallow: /*.json$
+Disallow: /*?*
+
+# بات‌های خاص
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /images/
+Allow: /icons/
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# مسیر sitemap.xml
 Sitemap: https://www.takiphone.ir/sitemap.xml
+
+# قوانین سرعت خزش
+Crawl-delay: 1
