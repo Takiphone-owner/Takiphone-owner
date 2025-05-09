@@ -1,0 +1,25 @@
+{
+  "name": "تک آیفون - مرکز تخصصی تعمیرات دربازکن تصویری",
+  "short_name": "تک آیفون",
+  "description": "مرکز تعمیرات تخصصی انواع دربازکن تصویری در تهران با بیش از یک دهه تجربه",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0066CC",
+  "dir": "rtl",
+  "lang": "fa-IR",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}
