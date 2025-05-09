@@ -10,8 +10,10 @@
 
 # تنظیم ریدایرکت برای مطمئن شدن از استفاده یکسان www یا بدون www
 RewriteEngine On
-RewriteCond %{HTTP_HOST} ^takiphone\.com [NC]
-RewriteRule ^(.*)$ https://www.takiphone.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^takiphone\.ir [NC]
+RewriteRule ^(.*)$ https://www.takiphone.ir/
+
+$1 [L,R=301]
 
 # جلوگیری از ایندکس شدن نسخه‌های تکراری محتوا
 <IfModule mod_headers.c>
